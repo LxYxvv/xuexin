@@ -3,16 +3,17 @@ package com.example.xuexin.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
 public class ResponseResult implements Serializable {
     private Integer code;
     private String msg;
-    private Map<String, Object> data;
+    private Map<String, Object> data = new HashMap<>();
 
     public ResponseResult addData(String key, Object value) {
-        data.put(key, value);
+        this.data.put(key, value);
         return this;
     }
 

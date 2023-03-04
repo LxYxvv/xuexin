@@ -19,7 +19,7 @@ public class UserController {
 
     // 使用手机号码登录
     @PostMapping(value = "login")
-    public ResponseResult login(HttpServletRequest request, @RequestBody String phone, @RequestBody String password) {
+    public ResponseResult login(HttpServletRequest request, @RequestParam String phone, @RequestParam String password) {
         ResponseResult responseResult = new ResponseResult();
         HttpSession session = request.getSession();
         if (phone == null) {
@@ -28,7 +28,7 @@ public class UserController {
             User user = userService.login(phone);
             if (user != null) {
                 if (user.getPassword().equals(password)) {
-                    responseResult.setCode(20010).setMsg("登录成功");
+                    responseResult.setCode(20010).setMsg("登录成功").addData("role",user.getRole());
                     session.setAttribute("user", user);
                 } else {
                     responseResult.setCode(20012).setMsg("密码错误");
