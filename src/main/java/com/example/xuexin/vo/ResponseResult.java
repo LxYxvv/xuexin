@@ -1,4 +1,4 @@
-package com.example.xuexin.entity;
+package com.example.xuexin.vo;
 
 import lombok.Data;
 
